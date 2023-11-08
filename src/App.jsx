@@ -1,18 +1,23 @@
 import React, { useState } from 'react';
+import NavBar from './NavBar.jsx';
+import ItemListContainer from './ItemListContainer.jsx';
 import BebidaLista from './bebidaLista.jsx';
 import AgregarBebida from './agregarBebida.jsx';
-import bebidasData from './bebidas.jsx';
+import cervezasData from './bebidas.js';
 
 function App() {
-  const [bebidas, setBebidas] = useState(bebidasData);
+  const greeting = "¡Bienvenido al control de stock de cervezas!";
+  const [cervezas, setCervezas] = useState(cervezasData);
 
   const handleBebidaAdded = (nuevaBebida) => {
-    setBebidas([...bebidas, nuevaBebida]);
+    setCervezas([...cervezas, nuevaBebida]);
   };
 
   return (
     <div>
-      <BebidaLista bebidas={bebidas} setBebidas={setBebidas} />
+      <NavBar />
+      <ItemListContainer greeting={greeting} />
+      <BebidaLista bebidas={cervezas} setBebidas={setCervezas} />
       <AgregarBebida onBebidaAdded={handleBebidaAdded} />
     </div>
   );
